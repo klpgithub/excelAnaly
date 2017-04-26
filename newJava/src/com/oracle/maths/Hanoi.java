@@ -1,13 +1,21 @@
 package com.oracle.maths;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+
 public class Hanoi {
     /**
-    * 
-    * @param n 盘子的数目
-    * @param origin 源座
-    * @param assist 辅助座
-    * @param destination 目的座
-    */
+     * 
+     * @param n
+     *            盘子的数目
+     * @param origin
+     *            源座
+     * @param assist
+     *            辅助座
+     * @param destination
+     *            目的座
+     */
     public void hanoi(int n, char origin, char assist, char destination) {
         if (n == 1) {
             move(origin, destination);
@@ -17,13 +25,16 @@ public class Hanoi {
             hanoi(n - 1, assist, origin, destination);
         }
     }
- 
+
     // Print the route of the movement
     private void move(char origin, char destination) {
         System.out.println("Direction:" + origin + "--->" + destination);
+
     }
- 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        PrintStream pw = new PrintStream("C:\\log.txt");
+        System.setOut(pw);
         Hanoi hanoi = new Hanoi();
         hanoi.hanoi(3, 'A', 'B', 'C');
     }
